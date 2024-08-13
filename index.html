@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Switch GitHub Account Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      h1, h2, h3 {
+        color: #333;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #666;
+      }
+
+      code {
+        background: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+
+      pre code {
+        background: none;
+        color: inherit;
+      }
+
+      .note {
+        background: #fffbcc;
+        border-left: 6px solid #ffeb3b;
+        padding: 10px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 15px;
+          margin: 20px auto;
+        }
+
+        pre {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Switch GitHub Account</h1>
+      <p><code>switcher-github.sh</code> is a tool that allows you to quickly switch between GitHub accounts, add new accounts, delete existing ones, and update account information.</p>
+
+      <h2>Features</h2>
+      <ul>
+        <li>Easily switch between accounts by setting the GitHub username and email address.</li>
+        <li>Add new GitHub accounts.</li>
+        <li>Delete or update existing accounts.</li>
+        <li>Accounts are stored in a configuration file located in your home directory.</li>
+      </ul>
+
+      <h2>Installation</h2>
+
+      <h3>1. Install as a Debian Package</h3>
+      <p>A <code>.deb</code> package is available for this tool, making it easy to use on Debian-based systems.</p>
+
+      <ol>
+        <li>Download and install the package:
+          <pre><code>sudo dpkg -i switch-github-account-1.0.deb</code></pre>
+        </li>
+        <li>Start using the script by running:
+          <pre><code>switcher-github.sh</code></pre>
+        </li>
+      </ol>
+
+      <h3>2. Manual Installation</h3>
+      <p>Alternatively, you can install the script manually:</p>
+
+      <ol>
+        <li>Move the script to a suitable directory:
+          <pre><code>cp switcher-github.sh /usr/local/bin/switcher-github.sh
+chmod +x /usr/local/bin/switcher-github.sh</code></pre>
+        </li>
+        <li>Run the script from the terminal:
+          <pre><code>switcher-github.sh</code></pre>
+        </li>
+      </ol>
+
+      <h2>Usage</h2>
+      <p>When you run the script, you'll be prompted with the following options:</p>
+      <ul>
+        <li><strong>Switch GitHub account:</strong> Allows you to switch between existing accounts.</li>
+        <li><strong>Add a new GitHub account:</strong> Allows you to add a new account with a username and email.</li>
+        <li><strong>Delete a GitHub account:</strong> Deletes one of the existing accounts.</li>
+        <li><strong>Update a GitHub account:</strong> Updates the username or email of an existing account.</li>
+      </ul>
+      <p>The script stores account information in a <code>.github_accounts</code> file in your home directory.</p>
+
+      <h2>Configuration File</h2>
+      <p>The script stores usernames and email addresses in the <code>$HOME/.github_accounts</code> file. The format of the file is as follows:</p>
+      <pre><code>ACCOUNT1_NAME="username1"
+ACCOUNT1_EMAIL="email1@example.com"
+ACCOUNT2_NAME="username2"
+ACCOUNT2_EMAIL="email2@example.com"
+...</code></pre>
+
+      <h2>Building the Package</h2>
+      <p>If you want to create a Debian package for this script:</p>
+      <ol>
+        <li>Create the necessary directory structure:
+          <pre><code>mkdir -p switch-github-account-1.0/usr/local/bin</code></pre>
+        </li>
+        <li>Copy the script to the appropriate directory:
+          <pre><code>cp switcher-github.sh switch-github-account-1.0/usr/local/bin/
+chmod +x switch-github-account-1.0/usr/local/bin/switcher-github.sh</code></pre>
+        </li>
+        <li>Create a <code>DEBIAN</code> directory and add a <code>control</code> file:
+          <pre><code>mkdir switch-github-account-1.0/DEBIAN</code></pre>
+        </li>
+        <li>Content of the <code>control</code> file:
+          <pre><code>Package: switch-github-account
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: bash
+Maintainer: Your Name &lt;your.email@example.com&gt;
+Description: A simple tool to switch GitHub accounts using a configuration file.</code></pre>
+        </li>
+        <li>Build the Debian package:
+          <pre><code>dpkg-deb --build switch-github-account-1.0</code></pre>
+        </li>
+        <li>Install the package:
+          <pre><code>sudo dpkg -i switch-github-account-1.0.deb</code></pre>
+        </li>
+      </ol>
+
+      <h2>Contributing</h2>
+      <p>We welcome contributions! If you have any suggestions or issues, please open an <a href="https://github.com/osmn-byhn/git-switch-account/issues">issue</a> or submit a pull request.</p>
+
+      <h2>License</h2>
+      <p>This project is licensed under the MIT License. See the <code>LICENSE</code> file for more details.</p>
+
+      <div style="display: flex; gap: 0.5;">
+        <a href="https://github.com/osmn-byhn/git-switch-account" style="background-color: #272822; padding: 15px; color: #fff; border-radius: 15px; text-decoration: none; font-weight: bold;">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a href="https://osmanbeyhan.onrender.com/" style="background-color: #1e37f8; padding: 15px; color: #fff; border-radius: 15px; text-decoration: none; font-weight: bold; margin-left: 15px;">
+          <i class="bi bi-globe2"></i> Osman Beyhan
+        </a>
+        <a href="./switch-github-account-1.0.deb" style="background-color: #1e37f8; padding: 15px; color: #fff; border-radius: 15px; text-decoration: none; font-weight: bold; margin-left: 15px;">
+          <i class="bi bi-globe2"></i> Download .deb
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
