@@ -1,5 +1,3 @@
-Certainly! Here's the README.md in English:
-
 ```markdown
 # Switch GitHub Account
 
